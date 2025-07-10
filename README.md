@@ -26,29 +26,33 @@ A comprehensive FastAPI microservice for portfolio analysis, risk calculation, a
    **For local development (recommended - uses uv):**
    ```bash
    pip install uv
-   uv sync
+   python dev.py  # Automatically sets up uv environment
    ```
    
    **For Railway-compatible setup (uses pip):**
    ```bash
    pip install -r requirements.txt
+   python run_server.py
    ```
 
 3. **Run the development server**
    
-   **With uv (local development):**
+   **Auto-setup development (recommended):**
    ```bash
+   python dev.py  # Auto-detects uv, sets up environment, enables reload
+   ```
+   
+   **Manual uv setup:**
+   ```bash
+   cp pyproject-local.toml pyproject.toml
+   uv sync
    uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
    ```
    
-   **With pip (Railway-compatible):**
+   **Manual pip setup:**
    ```bash
+   pip install -r requirements.txt
    python run_server.py
-   ```
-   
-   **Auto-detect (recommended):**
-   ```bash
-   python run_server.py  # Automatically detects environment
    ```
 
 4. **Access the API**

@@ -3,7 +3,10 @@ nixPkgs = ["python312", "gcc"]
 
 [phases.install]
 cmds = [
-    "pip install -r requirements.txt"
+    "echo '📦 Installing dependencies with pip...'",
+    "pip install --upgrade pip",
+    "pip install -r requirements.txt",
+    "echo '✅ Dependencies installed successfully'"
 ]
 
 [phases.build]

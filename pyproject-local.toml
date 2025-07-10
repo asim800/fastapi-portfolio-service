@@ -1,12 +1,11 @@
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+# Local development configuration for uv
+# This file is used only for local development with uv
+# Railway deployment uses requirements.txt only
 
 [project]
-name = "fastapi-portfolio-service"
+name = "fastapi-portfolio-service-dev"
 version = "1.0.0"
-description = "FastAPI microservice for portfolio analysis"
-authors = [{name = "Finance App Team"}]
+description = "FastAPI microservice for portfolio analysis (local development)"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.104.1",
@@ -23,13 +22,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pytest",
-    "httpx"
+    "pytest>=7.0.0",
+    "httpx>=0.24.0"
 ]
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["*"]
 
 [tool.uv]
 dev-dependencies = [

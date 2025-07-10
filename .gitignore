@@ -83,3 +83,7 @@ Thumbs.db
 
 # Deployment documentation (internal use only)
 RAILWAY_DEPLOYMENT_ISSUES.md
+
+# Temporary pyproject.toml for local development
+pyproject.toml
+uv.lock

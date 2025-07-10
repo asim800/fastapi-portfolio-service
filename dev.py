@@ -18,9 +18,14 @@ def main():
     if has_uv:
         print("✅ uv found - using uv for development")
         
-        # Ensure dependencies are synced
-        print("📦 Syncing dependencies with uv...")
-        subprocess.run(["uv", "sync"], check=True)
+        # Use the local pyproject.toml for uv
+        if os.path.exists("pyproject-local.toml"):
+            print("📦 Using pyproject-local.toml for uv development...")
+            subprocess.run(["cp", "pyproject-local.toml", "pyproject.toml"], check=True)
+            subprocess.run(["uv", "sync"], check=True)
+        else:
+            print("📦 Installing from requirements.txt with uv...")
+            subprocess.run(["uv", "pip", "install", "-r", "requirements.txt"], check=True)
         
         # Start development server with uv
         print("🚀 Starting development server with auto-reload...")

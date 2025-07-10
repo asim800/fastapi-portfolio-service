@@ -18,14 +18,22 @@ def main():
     print(f"🐍 Python executable: {sys.executable}")
     print(f"🚂 Railway environment: {is_railway}")
     
-    # Check if uvicorn is available
+    # Install all dependencies if not available
     try:
+        import fastapi
         import uvicorn
+        print(f"✅ FastAPI found: {fastapi.__version__}")
         print(f"✅ uvicorn found: {uvicorn.__version__}")
-    except ImportError:
-        print("❌ uvicorn not found, installing...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "uvicorn[standard]"])
+    except ImportError as e:
+        print(f"❌ Missing dependencies: {e}")
+        print("📦 Installing all dependencies from requirements.txt...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+        
+        # Re-import after installation
+        import fastapi
         import uvicorn
+        print(f"✅ FastAPI installed: {fastapi.__version__}")
+        print(f"✅ uvicorn installed: {uvicorn.__version__}")
     
     # Import the FastAPI app
     try:
@@ -33,6 +41,8 @@ def main():
         print(f"✅ FastAPI app imported: {app.title}")
     except ImportError as e:
         print(f"❌ Failed to import FastAPI app: {e}")
+        print("📋 Current working directory contents:")
+        print(os.listdir("."))
         sys.exit(1)
     
     # Start the server
