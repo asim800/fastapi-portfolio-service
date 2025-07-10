@@ -1,0 +1,37 @@
+{
+  "name": "FastAPI Portfolio Service",
+  "description": "A comprehensive FastAPI microservice for portfolio analysis, risk calculation, and financial data processing.",
+  "repository": {
+    "template": "https://github.com/YOUR_USERNAME/fastapi-portfolio-service"
+  },
+  "services": [
+    {
+      "name": "fastapi-portfolio-service",
+      "source": {
+        "repo": "https://github.com/YOUR_USERNAME/fastapi-portfolio-service",
+        "branch": "main"
+      },
+      "build": {
+        "builder": "NIXPACKS",
+        "buildCommand": "uv sync --frozen"
+      },
+      "deploy": {
+        "startCommand": "uv run uvicorn main:app --host 0.0.0.0 --port $PORT",
+        "restartPolicyType": "ON_FAILURE",
+        "restartPolicyMaxRetries": 10
+      },
+      "env": {
+        "RISK_FREE_RATE": "0.02"
+      },
+      "healthcheck": {
+        "path": "/health",
+        "port": "$PORT"
+      }
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "category": "Finance",
+    "tags": ["fastapi", "portfolio", "analysis", "python", "finance", "risk-management"]
+  }
+}
