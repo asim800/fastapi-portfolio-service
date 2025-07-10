@@ -103,8 +103,9 @@ curl -X POST "https://your-service.railway.app/portfolio/analyze" \
 
 ### Build Issues
 - Check Railway logs in the dashboard
-- Ensure `pyproject.toml` and `uv.lock` are committed
+- Ensure `pyproject.toml` and `uv.lock` are committed (uv.lock is required for reproducible builds)
 - Verify Python 3.12 compatibility
+- Run `uv sync --frozen` locally to verify lock file is valid
 
 ### Runtime Issues
 - Check service logs for errors
