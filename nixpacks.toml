@@ -4,7 +4,7 @@ nixPkgs = ["python312", "gcc"]
 [phases.install]
 cmds = [
     "pip install uv",
-    "uv sync --frozen"
+    "uv pip install -r requirements.txt --system"
 ]
 
 [phases.build]
