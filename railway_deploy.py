@@ -11,16 +11,22 @@ def main():
     print("🚂 Railway FastAPI Deployment")
     print("=" * 40)
     
-    # Install dependencies
-    print("📦 Installing dependencies...")
-    subprocess.check_call([
-        sys.executable, "-m", "pip", "install", 
-        "--upgrade", "pip", "setuptools", "wheel"
-    ])
-    subprocess.check_call([
-        sys.executable, "-m", "pip", "install", 
-        "-r", "requirements.txt", "--no-cache-dir"
-    ])
+    # Check if we're in Docker (dependencies already installed)
+    in_docker = os.path.exists("/.dockerenv")
+    
+    if not in_docker:
+        # Install dependencies if not in Docker
+        print("📦 Installing dependencies...")
+        subprocess.check_call([
+            sys.executable, "-m", "pip", "install", 
+            "--upgrade", "pip", "setuptools", "wheel"
+        ])
+        subprocess.check_call([
+            sys.executable, "-m", "pip", "install", 
+            "-r", "requirements.txt", "--no-cache-dir"
+        ])
+    else:
+        print("🐳 Running in Docker - dependencies already installed")
     
     # Import and run the server
     print("🚀 Starting FastAPI server...")

@@ -9,14 +9,12 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy dependency files
-COPY pyproject.toml uv.lock ./
+# Copy requirements file
+COPY requirements.txt ./
 
-# Install uv (modern Python package manager)
-RUN pip install uv
-
-# Install dependencies
-RUN uv sync --frozen
+# Install dependencies with pip
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install -r requirements.txt --no-cache-dir
 
 # Copy application code
 COPY . .
@@ -26,7 +24,6 @@ EXPOSE 8000
 
 # Set environment variables
 ENV PYTHONPATH=/app
-ENV PORT=8000
 
 # Command to run the application
-CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python", "railway_deploy.py"]
