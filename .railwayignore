@@ -1,0 +1,13 @@
+# Ignore local development files
+pyproject-local.toml
+dev.py
+check_health.py
+test_railway.py
+railway_start.py
+
+# Ignore uv files
+uv.lock
+.uv/
+
+# Ignore development documentation
+RAILWAY_DEPLOYMENT_ISSUES.md
