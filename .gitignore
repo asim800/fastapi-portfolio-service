@@ -80,3 +80,6 @@ Thumbs.db
 
 # Railway
 .railway/
+
+# Deployment documentation (internal use only)
+RAILWAY_DEPLOYMENT_ISSUES.md

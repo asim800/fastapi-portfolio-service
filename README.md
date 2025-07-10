@@ -21,15 +21,34 @@ A comprehensive FastAPI microservice for portfolio analysis, risk calculation, a
    cd fastapi-portfolio-service
    ```
 
-2. **Install dependencies using uv**
+2. **Install dependencies**
+   
+   **For local development (recommended - uses uv):**
    ```bash
    pip install uv
    uv sync
    ```
+   
+   **For Railway-compatible setup (uses pip):**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 3. **Run the development server**
+   
+   **With uv (local development):**
    ```bash
    uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
+   ```
+   
+   **With pip (Railway-compatible):**
+   ```bash
+   python run_server.py
+   ```
+   
+   **Auto-detect (recommended):**
+   ```bash
+   python run_server.py  # Automatically detects environment
    ```
 
 4. **Access the API**
